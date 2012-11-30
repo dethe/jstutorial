@@ -60,6 +60,10 @@ Changing things
 ``` javascript
 document.querySelector('.redblock').style.backgroundColor = '#F00';
 ```
+
+``` javascript
+document.querySelector('.blueblock').className = 'redblock';
+```
 ### Style (CSS)
 
 text
