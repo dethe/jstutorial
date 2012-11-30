@@ -2,6 +2,16 @@
 
 As you're no doubt aware, Javascript is the programming language that is built into web browsers. These days it is used for more than just web pages and web applications (two flavours of the same thing), but also runs on web servers and in games and applications. Javascript seems to be everywhere, and a basic knowledge of it can go a long way. For our purposes today we will just focus on Javascript in the web browser, and for simplicity we'll just deal with one browser, Firefox, for reasons which should be obvious.
 
+Other good starting points for learning about Javascript include:
+
+* [Javascript for Cats](http://jsforcats.com/)
+* [Eloquent Javascript](http://eloquentjavascript.net/)
+
+And for looking up more details, APIs, etc.
+
+* [Mozilla Developers Network](https://developer.mozilla.org/en-US/docs/JavaScript)
+* [Can I Use?](http://caniuse.com/) Great resource for finding support of new browser features.
+
 ## Life in the Browser
 
 Javascript in the browser is a bit different from traditional programming languages that are compiled into applications or run as scripts on the command line. The browser provides a context that Javascript has evolved in, features and constraints which are specific to the web environment. The browser provides an environment not only for Javascript, of course, but for HTML, CSS, and media files such as images and videos, all co-existing as a "web page." Javascript running in a page has access to all of these, so you can use it to change the structure, style, and content of the page in an infinite number of ways. We'll look mainly at adding new content to the page for data visualization, but the principles are the same for any kind of processing you want to do within a page, from the simplest hover animation to a full-featured game.
