@@ -33,7 +33,9 @@ window.resizeTo(500,300);
 ```
 ### Document
 
-text
+``` javascript
+document.body;
+```
 
 ### DOM (HTML)
 
