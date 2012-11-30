@@ -12,10 +12,15 @@ button{
 	float: right;
 }
 
+.content{
+	margin-bottom: 200px;
+}
+
 .CodeMirror{
 	position: fixed;
 	bottom: 0;
 	left: 0;
-	height: 300px;
+	width: 100%;
+	height: 200px;
 	background-color: #CCC;
 }
