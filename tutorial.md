@@ -43,6 +43,10 @@ Finding things:
 document.getElementsByClassName('.important'); // get all elements with class="important"
 ```
 
+``` javascript
+document.querySelector('.outerclass .innerclass');
+```
+
 ### DOM (HTML)
 
 text
