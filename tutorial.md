@@ -49,8 +49,11 @@ document.querySelector('.outerclass .innerclass');
 
 ### DOM (HTML)
 
-text
-
+``` html
+<div class="outerclass">
+	<div class="innerclass"></div>
+</div>
+```
 ### Style (CSS)
 
 text
