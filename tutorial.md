@@ -54,6 +54,12 @@ document.querySelector('.outerclass .innerclass');
 	<div class="innerclass"></div>
 </div>
 ```
+
+Changing things
+
+``` javascript
+document.querySelector('.redblock').style.backgroundColor = '#F00';
+```
 ### Style (CSS)
 
 text
