@@ -1,0 +1,13 @@
+.javascript{
+	margin-left: 20px;
+	margin-right: 50px;
+	margin-top: 10px;
+	margin-left: 10px;
+	border-radius: 10px;
+	background-color: #CCC;
+	padding: 15px;
+}
+
+button{
+	float: right;
+}
