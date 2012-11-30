@@ -71,7 +71,7 @@ document.querySelector('a.sprite').setAttribute('href', 'http://example.com/');
 
 ``` javascript
 document.querySelector('a.sprite').addEventListener('click', function(evt){
-	// notify google before following the link
+	/\/ notify google before following the link
 });
 ```
 
