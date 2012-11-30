@@ -64,6 +64,11 @@ document.querySelector('.redblock').style.backgroundColor = '#F00';
 ``` javascript
 document.querySelector('.blueblock').className = 'redblock';
 ```
+
+``` javascript
+document.querySelector('a.sprite').setAttribute('href', 'http://example.com/');
+```
+
 ### Style (CSS)
 
 text
