@@ -6,6 +6,7 @@
 	border-radius: 10px;
 	background-color: #CCC;
 	padding: 15px;
+	display: block;
 }
 
 button{

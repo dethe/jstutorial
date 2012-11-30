@@ -40,8 +40,6 @@ document.body;
 Finding things:
 
 ``` javascript
-document.getElementById('myid'); // get a single element with id="myid"
-document.getElementsByTagName('div'); // get all div elements
 document.getElementsByClassName('.important'); // get all elements with class="important"
 ```
 
