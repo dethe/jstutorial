@@ -10,10 +10,19 @@
 
 button{
 	float: right;
+	padding: 10px;
 }
 
 .content{
 	margin-bottom: 200px;
+}
+
+.runCode{
+	z-index: 10;
+	float: none;
+	position: fixed;
+	right: 10px;
+	bottom: 170px;
 }
 
 .CodeMirror{
