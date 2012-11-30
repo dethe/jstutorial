@@ -11,3 +11,11 @@
 button{
 	float: right;
 }
+
+.CodeMirror{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 300px;
+	background-color: #CCC;
+}
