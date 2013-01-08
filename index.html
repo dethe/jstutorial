@@ -52,7 +52,7 @@
 
 <p>Finding things:</p>
 
-<pre><code class="javascript">document.getElementsByClassName('.important'); // get all elements with class=&quot;important&quot;
+<pre><code class="javascript">document.getElementsByClassName('important'); // get all elements with class=&quot;important&quot;
 </code></pre>
 
 <pre><code class="javascript">document.querySelector('.outerclass .innerclass');
@@ -60,12 +60,109 @@
 
 <h3>DOM (HTML)</h3>
 
-<pre><code class="html">&lt;div class=&quot;outerclass&quot;&gt;
-    &lt;div class=&quot;innerclass&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
+<p>Creating a DIV and moving it around in an ellipse. You can see the following page at <a href="div.html">sample</a>;</p>
+
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;Moving Div Example&lt;/title&gt;
+    &lt;style&gt;
+     /* put style rules here */
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body id=&quot;home&quot;&gt;
+
+    &lt;h1&gt;Moving Div Example&lt;/h1&gt;
+
+    &lt;script&gt;
+    var div = document.createElement('div');
+    div.style.position = 'absolute';
+    div.style.top = '50px';
+    div.style.left = '50px';
+    div.style.width = '25px';
+    div.style.height = '25px';
+    div.style.backgroundColor = 'red';
+    document.body.appendChild(div);
+
+    var frame = 0;
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var degree = Math.PI / 180;
+    function moveDiv(){
+        frame = frame + 1;
+        var angle = degree * frame;
+        var x = Math.cos(angle) * width * .4 + width/2;
+        var y = Math.sin(angle) * height * .4 + height/2;
+        div.style.left = Math.floor(x) + 'px';
+        div.style.top = Math.floor(y) + 'px';
+        setTimeout(moveDiv, 30);
+    }
+    moveDiv();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Moving an SVG circle around in an ellipse <a href="svg.html">SVG example</a></p>
+
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;Moving an SVG circle&lt;/title&gt;
+    &lt;style&gt;
+        document, body{ height: 100%; }
+        svg{top: 0; left: 0; position: absolute;}
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body id=&quot;home&quot;&gt;
+    &lt;svg width=&quot;100%&quot; height=&quot;100%&quot;&gt;
+        &lt;circle id=&quot;circle&quot; r=&quot;25&quot; cx=&quot;50&quot; cy=&quot;50&quot; fill=&quot;#F00&quot; /&gt;
+    &lt;/svg&gt;
+
+    &lt;h1&gt;Moving an SVG Circle&lt;/h1&gt;
+
+    &lt;script&gt;
+    var circle = document.getElementById('circle');
+    var frame = 0;
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var degree = Math.PI / 180;
+    function moveDiv(){
+        frame = frame + 1;
+        var angle = degree * frame;
+        var x = Math.cos(angle) * width * .4 + width/2;
+        var y = Math.sin(angle) * height * .4 + height/2;
+        circle.setAttribute('cx', Math.floor(x) + 'px');
+        circle.setAttribute('cy', Math.floor(y) + 'px');
+        setTimeout(moveDiv, 30);
+    }
+    moveDiv();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 
 <p>Changing things</p>
+
+<pre><code class="javascript">document.querySelector('a.sprite').setAttribute('href', 'http://example.com/');
+</code></pre>
+
+<pre><code class="javascript">document.querySelector('a.sprite').addEventListener('click', function(evt){ /* notify google before follwing link */ });
+</code></pre>
+
+<p>Adding stuff</p>
+
+<pre><code class="javascript">var mydiv = document.createElement('div');
+</code></pre>
+
+<pre><code class="javascript">document.body.appendChild(mydiv);
+</code></pre>
+
+<h3>Style (CSS)</h3>
 
 <pre><code class="javascript">document.querySelector('.redblock').style.backgroundColor = '#F00';
 </code></pre>
@@ -73,21 +170,13 @@
 <pre><code class="javascript">document.querySelector('.blueblock').className = 'redblock';
 </code></pre>
 
-<pre><code class="javascript">document.querySelector('a.sprite').setAttribute('href', 'http://example.com/');
-</code></pre>
-
-<pre><code class="javascript">document.querySelector('a.sprite').addEventListener('click', function(evt){
-    /\/ notify google before following the link
-});
-</code></pre>
-
-<h3>Style (CSS)</h3>
-
-<p>text</p>
-
 <h3>Drawing (SVG)</h3>
 
-<p>text</p>
+<pre><code class="javascript">var circle = document.createElementNS('svg:circle', 'http://www.w3.org/2000/svg');
+</code></pre>
+
+<pre><code class="javascript">document.body.appendChild(circle);
+</code></pre>
 
 <h3>Events (Actions)</h3>
 
@@ -95,7 +184,8 @@
 
 <h3>Timers</h3>
 
-<p>text</p>
+<pre><code class="javascript">setTimeout(function(){alert('hello');}, 1000);
+</code></pre>
 
 <h2>Exploring with developer tools</h2>
 

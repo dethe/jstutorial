@@ -40,7 +40,7 @@ document.body;
 Finding things:
 
 ``` javascript
-document.getElementsByClassName('.important'); // get all elements with class="important"
+document.getElementsByClassName('important'); // get all elements with class="important"
 ```
 
 ``` javascript
@@ -49,13 +49,115 @@ document.querySelector('.outerclass .innerclass');
 
 ### DOM (HTML)
 
+Creating a DIV and moving it around in an ellipse. You can see the following page at [sample](div.html);
+
 ``` html
-<div class="outerclass">
-	<div class="innerclass"></div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Moving Div Example</title>
+	<style>
+	 /* put style rules here */
+	</style>
+</head>
+
+<body id="home">
+
+	<h1>Moving Div Example</h1>
+
+	<script>
+	var div = document.createElement('div');
+	div.style.position = 'absolute';
+	div.style.top = '50px';
+	div.style.left = '50px';
+	div.style.width = '25px';
+	div.style.height = '25px';
+	div.style.backgroundColor = 'red';
+	document.body.appendChild(div);
+	
+	var frame = 0;
+	var width = window.innerWidth;
+	var height = window.innerHeight;
+	var degree = Math.PI / 180;
+	function moveDiv(){
+		frame = frame + 1;
+		var angle = degree * frame;
+		var x = Math.cos(angle) * width * .4 + width/2;
+		var y = Math.sin(angle) * height * .4 + height/2;
+		div.style.left = Math.floor(x) + 'px';
+		div.style.top = Math.floor(y) + 'px';
+		setTimeout(moveDiv, 30);
+	}
+	moveDiv();
+	</script>
+</body>
+</html>
+```
+
+Moving an SVG circle around in an ellipse [SVG example](svg.html)
+
+``` html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Moving an SVG circle</title>
+	<style>
+		document, body{ height: 100%; }
+		svg{top: 0; left: 0; position: absolute;}
+	</style>
+</head>
+
+<body id="home">
+	<svg width="100%" height="100%">
+		<circle id="circle" r="25" cx="50" cy="50" fill="#F00" />
+	</svg>
+
+	<h1>Moving an SVG Circle</h1>
+
+	<script>
+	var circle = document.getElementById('circle');
+	var frame = 0;
+	var width = window.innerWidth;
+	var height = window.innerHeight;
+	var degree = Math.PI / 180;
+	function moveDiv(){
+		frame = frame + 1;
+		var angle = degree * frame;
+		var x = Math.cos(angle) * width * .4 + width/2;
+		var y = Math.sin(angle) * height * .4 + height/2;
+		circle.setAttribute('cx', Math.floor(x) + 'px');
+		circle.setAttribute('cy', Math.floor(y) + 'px');
+		setTimeout(moveDiv, 30);
+	}
+	moveDiv();
+	</script>
+</body>
+</html>
 ```
 
 Changing things
+
+
+``` javascript
+document.querySelector('a.sprite').setAttribute('href', 'http://example.com/');
+```
+
+``` javascript
+document.querySelector('a.sprite').addEventListener('click', function(evt){ /* notify google before follwing link */ });
+```
+
+Adding stuff
+
+``` javascript
+var mydiv = document.createElement('div');
+```
+``` javascript
+document.body.appendChild(mydiv);
+```
+
+### Style (CSS)
 
 ``` javascript
 document.querySelector('.redblock').style.backgroundColor = '#F00';
@@ -65,23 +167,15 @@ document.querySelector('.redblock').style.backgroundColor = '#F00';
 document.querySelector('.blueblock').className = 'redblock';
 ```
 
-``` javascript
-document.querySelector('a.sprite').setAttribute('href', 'http://example.com/');
-```
-
-``` javascript
-document.querySelector('a.sprite').addEventListener('click', function(evt){
-	/\/ notify google before following the link
-});
-```
-
-### Style (CSS)
-
-text
-
 ### Drawing (SVG)
 
-text
+``` javascript
+var circle = document.createElementNS('svg:circle', 'http://www.w3.org/2000/svg');
+```
+
+``` javascript
+document.body.appendChild(circle);
+```
 
 ### Events (Actions)
 
@@ -89,7 +183,9 @@ text
 
 ### Timers
 
-text
+``` javascript
+setTimeout(function(){alert('hello');}, 1000);
+```
 
 ## Exploring with developer tools
 
