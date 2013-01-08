@@ -140,7 +140,7 @@ more things, like dropping an item (or all items), or the 'look'
 command to show the long description and the room's contents. What
 else would be good to add?
 
-To try out this game, visit https://dethe.github.com/jstutorial/adventure.html
+To try out this game, visit http://dethe.github.com/jstutorial/adventure.html
 
 ``` javascript
 //
