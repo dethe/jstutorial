@@ -119,6 +119,8 @@ OK, so what does all of this have to do with games?
 
 With just this amount of Javascript, we can make a simple game. Well, almost, we're still missing a couple of pieces. We need to be able to print things we can respond to the player, and we need the player to be able to tell the program what to do next.
 
+To try out this game, visit https://dethe.github.com/jstutorial/adventure.html
+
 
 ``` javascript
 
