@@ -133,8 +133,6 @@ function print(text){
 	p.scrollIntoView();
 }
 
-function 
-
 ```
 
 Here is a simple example game. See if you can extend it to do some
@@ -151,27 +149,27 @@ var character = {'inventory': [], 'location': 'west room'};
 
 var dungeon = {
     'west room': {
-        'short description': 'west room',
-        'long description': 'a sloping north-south passage of barren rock',
+        'short_description': 'west room',
+        'long_description': 'the west end of a sloping east-west passage of barren rock',
         'contents': ['pail of water', 'dragon tooth'],
         'exits': {'east': 'centre room'}
     },
     'east room': {
-        'short description': 'east room',
-        'long description': 'a room of finished stone with high arched ceiling and soaring columns',
+        'short_description': 'east room',
+        'long_description': 'a room of finished stone with high arched ceiling and soaring columns',
         'contents': [],
         'exits': {'west': 'centre room'}
     },
     'centre room': {
-        'short description': 'centre room',
-        'long description': 'the very heart of the dungeon, a windowless chamber lit only by the eerie light of glowing fungi high above',
+        'short_description': 'centre room',
+        'long_description': 'the very heart of the dungeon, a windowless chamber lit only by the eerie light of glowing fungi high above',
         'contents': ['golden key', 'spiral hourglass'],
         'exits': {'east': 'east room', 'west': 'west room'}
     }
 };
 
 function command_split(str){
-	var parts = str.split(/\s*/); // splits string into an array of words, taking out all whitespace
+	var parts = str.split(/\s+/); // splits string into an array of words, taking out all whitespace
 	var command = parts.shift(); // command is the first word in the array, which is removed from the array
 	var object = parts.join(' '); // the rest of the words joined together.  If there are no other words, this will be an empty string
 	return [command, object];
@@ -187,13 +185,10 @@ function remove(array, item){
 }
 
 function tryToMove(room, direction){
-    if(room['exits'].indexOf(direction) > -1){
-        character['location'] = room['exits'][direction];
-        room = dungeon[character['location']];
-        print('You are in', room['long description']);
-        room['contents'].forEach(function(item){
-            print('There is a', item, 'here');
-		});
+    if(room.exits[direction]){
+        character.location = room.exits[direction];
+        room = dungeon[character.location];
+		describe(room);
     }else{
         print('You cannot go that way');
 	}
@@ -202,43 +197,67 @@ function tryToMove(room, direction){
 function printInventory(){
     print('You are carrying:');
     character['inventory'].forEach(function(item){
-        print('   ', item);
+        print('&nbsp;&nbsp;&nbsp;&nbsp;', item);
 	});
 }
 
-while(true){
+function describe(room){
+	if(!room.visited){
+		print ('you are in ' + room.long_description);
+	}else{
+		room.visited = true;
+		print (room.short_description);
+	}
+	var exits = Object.keys(room.exits);
+	if (exits.length > 1){
+		var last_exit = exits.pop();
+		print('there are exits to the ' + exits.join(', ') + ' and ' + last_exit);
+	}else{
+		print('there is an exit to the ' + exits[0]);
+	}
+    room['contents'].forEach(function(item){
+        print('There is a ' + item + ' here');
+	});
+}
+
+describe(dungeon[character.location]);
+
+function getOneCommand(){
     room = dungeon[character['location']];
-    command = command_split(prompt(room['short description'] + ' > '));
+    command = command_split(prompt(room['short_description'] + ' > '));
     verb = command[0];
     obj = command[1];
     console.log('verb: ' + verb + ', object: ' + obj);
-    if (verb in ['east', 'west', 'north', 'south', 'up', 'down', 'in', 'out	']){
+    if (['east', 'west', 'north', 'south', 'up', 'down', 'in', 'out	'].indexOf(verb) > -1){
 		tryToMove(room, verb);
-    }else if (verb == 'inventory'){
+    }else if (verb === 'inventory'){
 		printInventory();
-	}else if (verb == 'quit'){
+	}else if (verb === 'quit'){
         print('Goodbye');
-        break;
-	}else if (verb == 'take'){
-        if (obj == 'all'){
+        return;
+	}else if (verb === 'take'){
+        if (obj === 'all'){
             if (room['contents']){
                 room.contents.slice().forEach(function(item){ // .slice() makes a copy of the list so removing items works
-                    print('You pick up the ', item);
+                    print('You pick up the ' + item);
                     character['inventory'].push(item);
 					remove(room['contents'], item);
+				});
             }else{
-                print 'There is nothing to take!'
+                print('There is nothing to take!');
 			}
         }else{
             room['contents'].slice().forEach(function(item){
                 if (item.indexOf(obj) > -1){ // does the word in obj match any part of the text of item?
-                    print 'You pick up the', item
+                    print('You pick up the ' + item)
                     character['inventory'].push(item);
 					remove(room['contents'], item);
+				}
 			});
 		}
 	}
-
+	setTimeout(getOneCommand, 0);
 }
+getOneCommand();
 ```
 
